@@ -1,6 +1,7 @@
 
 body {
-    background-color: #ccf8ff;
+    background-image: linear-gradient(#5a5a5a, #00e7ff);
+    height: 94.5vh;
 }
 
 main {
@@ -11,18 +12,20 @@ main {
 h1 {
     font-size: 3rem;
     font-family: 'Courier New', Courier, monospace;
+    color: white;
 }
 
 div#rule p{
     font-size: 1.5rem;
     font-family: 'Courier New', Courier, monospace;
     margin: 0.25rem auto;
+    color: white;
 }
 
 p#sample-text {
     font-size: 1.25rem;
     background-color: #fff;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.65);
     padding: 1rem;
     margin: 2rem auto;
     width: fit-content;
@@ -30,10 +33,85 @@ p#sample-text {
     border: 2px dashed #000;
 }
 
+#timer-sectn {
+    position: absolute;
+    top: 25rem;
+    right: 10rem;
+    font-size: 1.5rem;
+    background: white;
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 1.5rem;
+}
+
+@media screen and (min-width: 1175px) {
+    #timer-sectn {
+        right: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 1174px) {
+    #timer-sectn {
+        top: 4rem;
+        right: 2.5rem;
+    }
+}
+
+#timer-sectn h2 {
+    margin: 0 0 0.45rem 0;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+}
+
+#timer {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
 section {
     margin: auto;
     width: 100%;
     text-align: center;
+}
+
+#countdown {
+    /* display: none; */
+    position: absolute;
+    top: 17rem;
+    left: 0;
+    right: 0;
+    font-size: 18rem;
+    font-weight: bold;
+    color: rgb(98, 98, 98, 0.75);
+    animation: cntdwn 1s linear 0.1s infinite;
+}
+
+@keyframes cntdwn {
+    0% {
+        transform: scale(1);
+    }
+    15% {
+        transform: scale(0.9);
+    }
+    25% {
+        transform: scale(0.8);
+    }
+    40% {
+        transform: scale(0.65);
+    }
+    50% {
+        transform: scale(0.5);
+    }
+    60% {
+        transform: scale(0.4);
+    }
+    75% {
+        transform: scale(0.3);
+    } 
+    100% {
+        transform: scale(0.1);
+    }
 }
 
 textarea {
@@ -99,25 +177,4 @@ button:disabled {
 button:disabled:hover {
     cursor: default;
     transform: none;
-}
-
-#timer-sectn {
-    position: absolute;
-    top: 20rem;
-    right: 10rem;
-    font-size: 1.5rem;
-    background: white;
-    border: 1px solid;
-    border-radius: 4rem;
-    padding: 2rem;
-}
-
-#timer-sectn h2 {
-    text-decoration: underline;
-    text-decoration-skip-ink: none;
-}
-
-#timer {
-    font-size: 1.75rem;
-    font-weight: bold;
 }

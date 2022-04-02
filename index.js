@@ -9,12 +9,14 @@ const sampleData = [
 ]
 
 const sampleText = document.getElementById("sample-text");
+const cntDwn = document.getElementById("countdown");
 const userText = document.getElementById("user-text");
 const startBtn = document.getElementById("start");
 const timer = document.getElementById("timer");
 const resetBtn = document.getElementById("reset");
 const  defaultTime = "00:00";
 let timerInterval = null;
+let cntDwnId = null;
 let minutes = 0;
 let seconds = 0;
 let initialIndx = 0;
@@ -48,8 +50,23 @@ function generateRandomText() {
     sampleText.style.fontSize = "1.75rem";
     sampleText.style.color = "black";
     startBtn.disabled = true;
+    startCountDown();
+}
 
-    timerInterval = setInterval(updateTime, 1000);
+function startCountDown() {
+    let cnt = 3;
+    cntDwn.innerHTML = cnt;
+    cntDwnId = setInterval(() => {
+        cnt --;
+        cntDwn.innerHTML = cnt;
+        if (cnt == 0) {
+            cntDwn.innerHTML = "";
+            clearInterval(cntDwnId);
+            userText.disabled = false;
+            userText.focus();
+            timerInterval = setInterval(updateTime, 1000);
+        }
+    }, 1000)
 }
 
 function updateTime() {
@@ -78,8 +95,13 @@ function updateTime() {
 
 function resetTimer() {
     clearInterval(timerInterval);
+    clearInterval(cntDwnId);
+    cntDwn.innerHTML = "";
     timer.innerHTML = "00:00";
+    minutes = 0;
+    seconds = 0;
     sampleText.innerHTML = "Click on the START button to start the race against time...";
+    userText.disabled = true;
     userText.value = "";
     userText.classList.remove("error-text");
     userText.classList.remove("success-text");
